@@ -50,11 +50,13 @@ const user2 = {
     course : "Python"
 }
 
-async function test(){
-    const manager1 = new UsersManager()
-    const users = await manager1.getUsers()
-    await manager1.createUser(user1)
-    console.log(users)
-}
+// async function test(){
+//     const manager1 = new UsersManager()
+//     const users = await manager1.getUsers()
+//     await manager1.createUser(user1)
+//     console.log(users)
+// }
 
-test()
+// test()
+
+export const manager = new UsersManager()

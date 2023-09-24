@@ -1,22 +1,17 @@
 import express from "express"
+import { manager } from "./02-sync-example"
 
 const app = express()
 
-// req => params, query, body
-app.get("/", (req, res) => {
-    res.send("Hello World")
+// req => params, query , body
+app.get("/api/users", async (req, res)=>{
+    const users = await manager.getUsers()
+    res.json({message:"user found",users})
 })
 
-// /api/character => buscar todos los personajes o crear un personaje
-app.get("/", (req, res) => {
-    res.send("Hello World")
-})
-
-app.post("/api/character", (req, res) => {
-    res.send("Hello World")
-})
-app.get("/user", (req, res) => {
-    res.send("Hello User")
+app.get("/api/users/:id", async (req,res) => {
+    const user = await manager.getUserById(req.params.id)
+    res.json({message:"User found", user})
 })
 
 app.listen(3000, () => {

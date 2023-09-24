@@ -1,27 +1,27 @@
 [
     {
         "first_name": "Juan",
-        "last_name": "Hoyos",
+        "last_name": "Hernandez",
         "age": 40,
+        "course": "Python"
+    },
+    {
+        "first_name": "Mario",
+        "last_name": "Partida",
+        "age": 35,
         "course": "Javascript"
     },
     {
-        "first_name": "Juan",
-        "last_name": "Hoyos",
-        "age": 40,
+        "first_name": "Emanuel",
+        "last_name": "Ortega",
+        "age": 35,
         "course": "Javascript"
     },
     {
-        "first_name": "Juan",
-        "last_name": "Hoyos",
-        "age": 40,
-        "course": "Javascript"
-    },
-    {
-        "first_name": "Juan",
-        "last_name": "Hoyos",
-        "age": 40,
-        "course": "Javascript"
+        "first_name": "Luis",
+        "last_name": "Valdez",
+        "age": 20,
+        "course": "Python"
     },
     {
         "first_name": "Juan",
