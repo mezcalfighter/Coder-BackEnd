@@ -1,4 +1,4 @@
-const fs = require("fs")
+import fs from "fs"
 const path = "02-users.json"
 
 class UsersManager{
@@ -24,7 +24,21 @@ class UsersManager{
             return err
         }
     }
-    async getUserById(){}
+
+    async getUserById(id){
+        try{
+            const users = await this.getUsers()
+            const user = users.find((u)=> u.id === id)
+            if(!user){
+                return "No user"
+            }else{
+                return user
+            }
+        }catch(err){
+            return err
+        }
+    }
+
     async deleteUser(id){
         try{
             const users = await this.getUsers()

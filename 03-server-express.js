@@ -1,5 +1,5 @@
 import express from "express"
-import { manager } from "./02-sync-example"
+import { manager } from "./02-sync-example.js"
 
 const app = express()
 
@@ -10,7 +10,7 @@ app.get("/api/users", async (req, res)=>{
 })
 
 app.get("/api/users/:id", async (req,res) => {
-    const user = await manager.getUserById(req.params.id)
+    const user = await manager.getUserById(parseInt(req.params.id))
     res.json({message:"User found", user})
 })
 
