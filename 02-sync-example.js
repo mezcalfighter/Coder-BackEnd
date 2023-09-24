@@ -2,11 +2,13 @@ import fs from "fs"
 const path = "02-users.json"
 
 class UsersManager{
-    async getUsers(){
+    async getUsers(queryObj){
+        const {limit} = queryObj
         try{
             if(fs.existsSync(path)){
                 const usersFile = await fs.promises.readFile(path,"utf-8")
-                return JSON.parse(usersFile)
+                const userData = JSON.parse(usersFile)
+                return limit ? userData.slice(0, limit) : userData
             }else{
                 return []
             }
@@ -27,13 +29,9 @@ class UsersManager{
 
     async getUserById(id){
         try{
-            const users = await this.getUsers()
+            const users = await this.getUsers({})
             const user = users.find((u)=> u.id === id)
-            if(!user){
-                return "No user"
-            }else{
-                return user
-            }
+            return user
         }catch(err){
             return err
         }
