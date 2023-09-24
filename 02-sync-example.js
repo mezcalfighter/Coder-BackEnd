@@ -1,3 +1,4 @@
+import { createHash } from "crypto"
 import fs from "fs"
 const path = "02-users.json"
 
@@ -19,9 +20,20 @@ class UsersManager{
     }
     async createUser(user){
         try{
-            const users = await this.getUsers()
-            users.push(user)
+            const users = await this.getUsers({})
+            let id
+            if(!users.length){
+                id = 1
+            }else{
+                id = users[users.length - 1].id + 1
+            }
+            const hashPassword = createHash("sha512")
+                .update(user.password)
+                .digest("hex")
+            const createdUser = {id, ...user, password:hashPassword}
+            users.push(createdUser)
             await fs.promises.writeFile(path,JSON.stringify(users))
+            return createdUser
         }catch(err){
             return err
         }
@@ -39,9 +51,14 @@ class UsersManager{
 
     async deleteUser(id){
         try{
-            const users = await this.getUsers()
-            const newArrayUsers = users.filter(u => u.id !== id)
-            await fs.promises.writeFile(path,JSON.stringify(newArrayUsers))
+            const users = await this.getUsers({})
+            const user = users.find((u)=>u.id === id)
+            console.log(user)
+            if(user){
+                const newArrayUsers = users.filter(u => u.id !== id)
+                await fs.promises.writeFile(path,JSON.stringify(newArrayUsers))
+            }
+            return user
         }catch(err){
             return err
         }
