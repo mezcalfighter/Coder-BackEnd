@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { manager } from "../UsersManager.js";
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const router = Router()
 
@@ -25,7 +26,7 @@ router.get("/:id", async (req,res) => {
     }
 })
 
-router.post("/", async (req,res)=>{
+router.post("/", authMiddleware, async (req,res)=>{
     try{
         const {first_name, course, age, password} = req.body
         if(!first_name, !course, !age, !password){
