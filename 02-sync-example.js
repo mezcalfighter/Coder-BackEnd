@@ -13,7 +13,6 @@ class UsersManager{
             }else{
                 return []
             }
-
         }catch(err){
             return err
         }
