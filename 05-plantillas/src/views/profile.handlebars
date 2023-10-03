@@ -1,0 +1,7 @@
+{{#if user}}
+<h3>Welcome {{user.first_name}} {{user.last_name}}</h3>
+<p>This is your profile and your email is {{user.email}}</p>
+{{else}}
+<h3>User does not exist</h3>
+<p>Error: {{err}}</p>
+{{/if}}
